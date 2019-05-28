@@ -1,6 +1,8 @@
 package com.raseeditask.data.adresponse
 
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import com.google.gson.annotations.SerializedName
 
 data class AdModel(
@@ -20,4 +22,12 @@ data class AdModel(
     val title: String,
     @SerializedName("url")
     val url: String
-)
+) : Comparable<AdModel> {
+
+    @RequiresApi(Build.VERSION_CODES.KITKAT)
+    override operator fun compareTo(o: AdModel): Int {
+        return Integer.compare(this.order, o.order)
+    }
+
+
+}

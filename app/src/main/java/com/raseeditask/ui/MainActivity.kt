@@ -1,21 +1,24 @@
 package com.raseeditask.ui
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.ui.NavigationUI
 import com.raseeditask.R
-import com.raseeditask.data.addatastore.RemoteAdDataStore
-import com.raseeditask.data.adresponse.NetworkFactory
-import io.reactivex.disposables.Disposable
-import io.reactivex.functions.Consumer
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-    lateinit var disposable: Disposable
+    lateinit var navController: NavController
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val remoteAdDataStore: RemoteAdDataStore = RemoteAdDataStore(adApis = NetworkFactory())
+        setSupportActionBar(toolbar)
 
-        disposable = remoteAdDataStore.getAd().subscribe(Consumer {  Log.d("data", it.toString()) }, Consumer {  Log.d("data", it.toString()) })
+        navController = Navigation.findNavController(this, R.id.nav_host_fragment)
+        NavigationUI.setupActionBarWithNavController(this, navController)
+
     }
+
 }
