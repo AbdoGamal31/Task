@@ -1,12 +1,12 @@
 package com.raseeditask.ui.adlistadapter
 
-import android.R
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.raseeditask.R
 import com.raseeditask.data.adresponse.AdModel
 import com.squareup.picasso.Callback
 import com.squareup.picasso.NetworkPolicy

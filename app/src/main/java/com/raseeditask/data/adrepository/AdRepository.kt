@@ -5,6 +5,7 @@ import com.raseeditask.data.addatastore.LocalAdDataStore
 import com.raseeditask.data.adnetwork.NetworkUtility
 import com.raseeditask.data.adresponse.AdModel
 import com.raseeditask.data.adusecase.GetRemoteAdAscendingOrderUseCase
+import io.reactivex.Observable
 import io.reactivex.Single
 
 class AdRepository(
@@ -15,7 +16,7 @@ class AdRepository(
 
     var isConnectedNetwork = NetworkUtility(context).isOnline()
 
-    fun getAdAscendingOrder(): Single<MutableList<MutableList<AdModel>>>? {
+    fun getAdAscendingOrder(): Observable<MutableList<AdModel>>? {
         if (isConnectedNetwork)
             return getRemoteAdAscendingOrderUseCase.getAdAscendingOrder()
         else return null
