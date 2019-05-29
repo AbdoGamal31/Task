@@ -8,9 +8,9 @@ import com.raseeditask.data.adusecase.GetRemoteAdAscendingOrderUseCase
 import io.reactivex.Observable
 
 class AdRepository(
-        private val context: Context,
-        private val getRemoteAdAscendingOrderUseCase: GetRemoteAdAscendingOrderUseCase,
-        private val getLocalAdAscendingOrderUseCase: GetLocalAdAscendingOrderUseCase
+    private val context: Context,
+    private val getRemoteAdAscendingOrderUseCase: GetRemoteAdAscendingOrderUseCase,
+    private val getLocalAdAscendingOrderUseCase: GetLocalAdAscendingOrderUseCase
 ) {
 
     var isConnectedNetwork = NetworkUtility(context).isOnline()

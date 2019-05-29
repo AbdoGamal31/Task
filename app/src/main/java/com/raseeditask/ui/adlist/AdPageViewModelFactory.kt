@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.raseeditask.data.adrepository.AdRepository
 
 class AdPageViewModelFactory(
-        private val adRepository: AdRepository
+    private val adRepository: AdRepository
 ) : ViewModelProvider.NewInstanceFactory() {
 
     @Suppress("UNCHECKED_CAST")

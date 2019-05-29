@@ -19,15 +19,17 @@ abstract class AppDatabase : RoomDatabase() {
 
         operator fun invoke(context: Context) = instance
             ?: synchronized(LOCK) {
-            instance
-                ?: buildDatabase(context).also { instance = it }
-        }
+                instance
+                    ?: buildDatabase(context).also { instance = it }
+            }
 
         private fun buildDatabase(context: Context) =
-                Room.databaseBuilder(context.applicationContext,
-                        AppDatabase::class.java, "AdDatabase.db")
-                    .allowMainThreadQueries()
-                    .fallbackToDestructiveMigration()
-                    .build()
+            Room.databaseBuilder(
+                context.applicationContext,
+                AppDatabase::class.java, "AdDatabase.db"
+            )
+                .allowMainThreadQueries()
+                .fallbackToDestructiveMigration()
+                .build()
     }
 }

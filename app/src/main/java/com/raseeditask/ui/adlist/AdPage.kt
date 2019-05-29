@@ -10,15 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.raseeditask.R
-import com.raseeditask.data.addatastore.RemoteAdDataStore
-import com.raseeditask.data.addatastore.localstore.AdDao
-import com.raseeditask.data.addatastore.localstore.AppDatabase
-import com.raseeditask.data.addatastore.localstore.LocalAdDataStore
-import com.raseeditask.data.adrepository.AdRepository
 import com.raseeditask.data.adresponse.AdModel
-import com.raseeditask.data.adresponse.NetworkFactory
-import com.raseeditask.data.adusecase.GetLocalAdAscendingOrderUseCase
-import com.raseeditask.data.adusecase.GetRemoteAdAscendingOrderUseCase
 import com.raseeditask.ui.adlistadapter.AdListAdapter
 import io.reactivex.disposables.Disposable
 import io.reactivex.functions.Consumer
