@@ -4,6 +4,6 @@
             xmlns:tools="http://schemas.android.com/tools" android:id="@+id/app_story_board"
             app:startDestination="@id/adPage">
 
-    <fragment android:id="@+id/adPage" android:name="com.raseeditask.ui.AdPage" android:label="ad_page"
+    <fragment android:id="@+id/adPage" android:name="com.raseeditask.ui.adlist.AdPage" android:label="ad_page"
               tools:layout="@layout/ad_page"/>
 </navigation>

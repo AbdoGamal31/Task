@@ -1,11 +1,15 @@
 package com.raseeditask.data.addatastore
 
+import com.raseeditask.data.addatastore.adcashing.AdDao
 import com.raseeditask.data.adresponse.AdModel
-import io.reactivex.Observable
 
-class LocalAdDataStore  {
+class LocalAdDataStore(private val adDao: AdDao) {
 
-     fun getAd(): Observable<List<AdModel>> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    fun getAd(): MutableList<AdModel> {
+        return adDao.getAdAscendingOrder()
+    }
+
+    fun insert(adList: MutableList<AdModel>) {
+        return adDao.insert(adList)
     }
 }

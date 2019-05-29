@@ -3,9 +3,16 @@ package com.raseeditask.data.adresponse
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
+@Entity(tableName = "ad_table")
 data class AdModel(
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
+    val id: Int,
     @SerializedName("action")
     val action: String,
     @SerializedName("best_offer")
