@@ -9,7 +9,7 @@
         android:id="@+id/news_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/ad_list_item">
+        tools:listitem="@layout/card_item">
 
     </androidx.recyclerview.widget.RecyclerView>
 

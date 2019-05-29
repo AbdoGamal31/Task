@@ -36,7 +36,7 @@ class AdPage : Fragment() {
 
         disposable =
             getAdAscendingOrderUseCase.getAdAscendingOrder()!!
-                .subscribe(Consumer {text.setText(it.toString()) },
+                .subscribe( Consumer {  },
                 Consumer { Log.d("data", it.toString()) })
     }
 

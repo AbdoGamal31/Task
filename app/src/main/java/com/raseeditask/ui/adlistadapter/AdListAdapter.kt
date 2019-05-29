@@ -1,15 +1,17 @@
 package com.raseeditask.ui.adlistadapter
 
-import androidx.recyclerview.widget.RecyclerView
 import android.R
-import android.widget.TextView
-import android.text.method.TextKeyListener.clear
-import android.graphics.Movie
-import androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior.setTag
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import com.raseeditask.data.adresponse.AdModel
+import com.squareup.picasso.Callback
+import com.squareup.picasso.NetworkPolicy
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.card_item.view.*
 
 
 class AdListAdapter : RecyclerView.Adapter<AdListAdapter.DataViewHolder>() {
@@ -20,38 +22,53 @@ class AdListAdapter : RecyclerView.Adapter<AdListAdapter.DataViewHolder>() {
         this.adList = ArrayList()
     }
 
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataViewHolder {
-        val inflater = LayoutInflater.from(parent.context)
-        val view = inflater.inflate(R.layout.ad_list_item, parent, false)
-        return DataViewHolder(view)
+        val itemView = LayoutInflater.from(parent.context)
+            .inflate(R.layout.card_item, parent, false)
+
+        return DataViewHolder(itemView)
     }
 
-    override fun onBindViewHolder( holder: DataViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: DataViewHolder, position: Int) {
         val adModel = adList!![position]
-        holder.movieName!!.setText(movie.getOriginalTitle())
-        holder.movieOverview!!.setText(movie.getOverview())
-        holder.movieReleaseDate!!.setText(movie.getReleaseDate())
-        holder.favIcon!!.setOnClickListener({ v ->
+        holder.adTitle!!.setText(adModel.title)
+        Picasso.get()
+            .load(adModel.picture)
+            .networkPolicy(NetworkPolicy.OFFLINE)
+            .into(holder.adImage!!, object : Callback {
+                override fun onSuccess() {
+
+                }
+
+                override fun onError(e: Exception) {
+                    Picasso.get()
+                        .load(adModel.picture)
+                        .placeholder(ColorDrawable(Color.BLACK))
+                        .into(holder.adImage)
+                }
+            })
+        holder.itemView!!.setOnClickListener({ v ->
 
         })
     }
 
-
-    fun setTopRatedMovieList(movieList: List<Movie>) {
-        if (movies == null) {
+    fun setAdList(adModelList: List<AdModel>) {
+        if (adList == null) {
             return
         }
-        movies.clear()
-        movies.addAll(movieList)
+        adList.clear()
+        adList.addAll(adModelList)
         notifyDataSetChanged()
     }
 
     override fun getItemCount(): Int {
-        return movies!!.size()
+        return adList!!.size
     }
 
-    internal inner class DataViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val tvAnimalType = view.
+    inner class DataViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val adTitle = itemView.ad_title
+        val adImage = itemView.ad_image
 
     }
 }
