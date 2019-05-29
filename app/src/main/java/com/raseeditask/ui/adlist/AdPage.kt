@@ -23,16 +23,18 @@ import com.raseeditask.ui.adlistadapter.AdListAdapter
 import io.reactivex.disposables.Disposable
 import io.reactivex.functions.Consumer
 import kotlinx.android.synthetic.main.ad_page.*
+import org.kodein.di.KodeinAware
+import org.kodein.di.android.x.closestKodein
+import org.kodein.di.generic.instance
 
 
-class AdPage : Fragment() {
+class AdPage : Fragment(), KodeinAware {
 
     private lateinit var viewModel: AdPageViewModel
     private lateinit var disposable: Disposable
     private lateinit var adapter: AdListAdapter
-    private var adDao: AdDao? = null
-    private lateinit var adPageViewModelFactory: AdPageViewModelFactory
-
+    override val kodein by closestKodein()
+    private val adPageViewModelFactory: AdPageViewModelFactory by instance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,28 +46,6 @@ class AdPage : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         changePageTtitle()
-        val remoteAdDataStore = RemoteAdDataStore(adApis = NetworkFactory())
-        adDao = AppDatabase.invoke(context!!).adDao()
-        val getAdAscendingOrderUseCaseRemote =
-            GetRemoteAdAscendingOrderUseCase(
-                remoteAdDataStore,
-                LocalAdDataStore(adDao!!)
-            )
-        val getAdAscendingOrderUseCaseLocal =
-            GetLocalAdAscendingOrderUseCase(
-                localAdDataStore = LocalAdDataStore(
-                    adDao!!
-                )
-            )
-
-        adPageViewModelFactory = AdPageViewModelFactory(
-            AdRepository(
-                context!!,
-                getAdAscendingOrderUseCaseRemote,
-                getAdAscendingOrderUseCaseLocal
-            )
-        )
-
         viewModel = ViewModelProviders.of(this, adPageViewModelFactory).get(AdPageViewModel::class.java)
         adapter = AdListAdapter()
 

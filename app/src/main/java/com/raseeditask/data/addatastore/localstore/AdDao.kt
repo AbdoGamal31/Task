@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.raseeditask.data.adresponse.AdModel
+import io.reactivex.Observable
 
 @Dao
 interface AdDao {
@@ -13,6 +14,6 @@ interface AdDao {
     fun insert(adModelList: MutableList<AdModel>)
 
     @Query("select * from ad_table ")
-    fun getAdAscendingOrder(): MutableList<AdModel>
+    fun getAdAscendingOrder(): Observable<MutableList<AdModel>>
 
 }

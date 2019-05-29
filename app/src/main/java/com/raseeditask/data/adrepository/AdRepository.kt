@@ -18,6 +18,6 @@ class AdRepository(
     fun getAdAscendingOrder(): Observable<MutableList<AdModel>>? {
         if (isConnectedNetwork)
             return getRemoteAdAscendingOrderUseCase.getAdAscendingOrder()
-        else return Observable.just(getLocalAdAscendingOrderUseCase.getAdAscendingOrder())
+        else return getLocalAdAscendingOrderUseCase.getAdAscendingOrder()
     }
 }

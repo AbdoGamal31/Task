@@ -1,10 +1,11 @@
 package com.raseeditask.data.addatastore.localstore
 
 import com.raseeditask.data.adresponse.AdModel
+import io.reactivex.Observable
 
 class LocalAdDataStore(private val adDao: AdDao) {
 
-    fun getAd(): MutableList<AdModel> {
+    fun getAd(): Observable<MutableList<AdModel>> {
         return adDao.getAdAscendingOrder()
     }
 
