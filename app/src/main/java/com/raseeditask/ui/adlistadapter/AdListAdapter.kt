@@ -30,7 +30,7 @@ class AdListAdapter : RecyclerView.Adapter<AdListAdapter.DataViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataViewHolder {
         context = parent.context
         val itemView = LayoutInflater.from(parent.context)
-                .inflate(R.layout.card_item, parent, false)
+            .inflate(R.layout.card_item, parent, false)
         return DataViewHolder(itemView)
     }
 
@@ -63,21 +63,21 @@ class AdListAdapter : RecyclerView.Adapter<AdListAdapter.DataViewHolder>() {
 
     private fun downloadImageAndCashItInOfflineMode(adModel: AdModel, holder: DataViewHolder) {
         Picasso.get()
-                .load(adModel.picture)
-                .networkPolicy(NetworkPolicy.OFFLINE)
-                .fit()
-                .into(holder.adImage!!, object : Callback {
-                    override fun onSuccess() {
+            .load(adModel.picture)
+            .networkPolicy(NetworkPolicy.OFFLINE)
+            .fit()
+            .into(holder.adImage!!, object : Callback {
+                override fun onSuccess() {
 
-                    }
+                }
 
-                    override fun onError(e: Exception) {
-                        Picasso.get()
-                                .load(adModel.picture)
-                                .placeholder(ColorDrawable(Color.BLACK))
-                                .into(holder.adImage)
-                    }
-                })
+                override fun onError(e: Exception) {
+                    Picasso.get()
+                        .load(adModel.picture)
+                        .placeholder(ColorDrawable(Color.BLACK))
+                        .into(holder.adImage)
+                }
+            })
     }
 
     private fun openExternalWebBrowser(url: String) {
