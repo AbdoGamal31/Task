@@ -1,4 +1,4 @@
-package com.raseeditask.data.addatastore.adcashing
+package com.raseeditask.data.addatastore.localstore
 
 import androidx.room.Dao
 import androidx.room.Insert

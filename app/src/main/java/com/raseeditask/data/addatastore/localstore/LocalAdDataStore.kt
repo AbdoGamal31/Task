@@ -1,6 +1,5 @@
-package com.raseeditask.data.addatastore
+package com.raseeditask.data.addatastore.localstore
 
-import com.raseeditask.data.addatastore.adcashing.AdDao
 import com.raseeditask.data.adresponse.AdModel
 
 class LocalAdDataStore(private val adDao: AdDao) {

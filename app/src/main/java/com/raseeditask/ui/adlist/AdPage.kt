@@ -10,10 +10,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.raseeditask.R
-import com.raseeditask.data.addatastore.LocalAdDataStore
 import com.raseeditask.data.addatastore.RemoteAdDataStore
-import com.raseeditask.data.addatastore.adcashing.AdDao
-import com.raseeditask.data.addatastore.adcashing.AppDatabase
+import com.raseeditask.data.addatastore.localstore.AdDao
+import com.raseeditask.data.addatastore.localstore.AppDatabase
+import com.raseeditask.data.addatastore.localstore.LocalAdDataStore
 import com.raseeditask.data.adrepository.AdRepository
 import com.raseeditask.data.adresponse.AdModel
 import com.raseeditask.data.adresponse.NetworkFactory
@@ -47,9 +47,16 @@ class AdPage : Fragment() {
         val remoteAdDataStore = RemoteAdDataStore(adApis = NetworkFactory())
         adDao = AppDatabase.invoke(context!!).adDao()
         val getAdAscendingOrderUseCaseRemote =
-            GetRemoteAdAscendingOrderUseCase(remoteAdDataStore, LocalAdDataStore(adDao!!))
+            GetRemoteAdAscendingOrderUseCase(
+                remoteAdDataStore,
+                LocalAdDataStore(adDao!!)
+            )
         val getAdAscendingOrderUseCaseLocal =
-            GetLocalAdAscendingOrderUseCase(localAdDataStore = LocalAdDataStore(adDao!!))
+            GetLocalAdAscendingOrderUseCase(
+                localAdDataStore = LocalAdDataStore(
+                    adDao!!
+                )
+            )
 
         adPageViewModelFactory = AdPageViewModelFactory(
             AdRepository(
@@ -69,13 +76,19 @@ class AdPage : Fragment() {
     }
 
     private fun displayAdListIntoRecView(it: MutableList<AdModel>) {
-        group_loading.visibility = View.GONE
-        ad_card_list.visibility = View.VISIBLE
-        ad_card_list.layoutManager = LinearLayoutManager(activity)
-        ad_card_list.adapter = adapter
-        ad_card_list.hasFixedSize()
-        adapter.setAdList(it)
-        adapter.notifyDataSetChanged()
+        if (it.size == 0) {
+            empty_stat.visibility = View.VISIBLE
+            group_loading.visibility = View.GONE
+            ad_card_list.visibility = View.GONE
+        } else {
+            group_loading.visibility = View.GONE
+            ad_card_list.visibility = View.VISIBLE
+            ad_card_list.layoutManager = LinearLayoutManager(activity)
+            ad_card_list.adapter = adapter
+            ad_card_list.hasFixedSize()
+            adapter.setAdList(it)
+            adapter.notifyDataSetChanged()
+        }
     }
 
     private fun changePageTtitle() {

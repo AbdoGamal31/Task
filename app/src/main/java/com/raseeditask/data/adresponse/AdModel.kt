@@ -10,15 +10,13 @@ import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = "ad_table")
 data class AdModel(
-    @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "id")
-    val id: Int,
     @SerializedName("action")
     val action: String,
     @SerializedName("best_offer")
     val bestOffer: Boolean,
     @SerializedName("order")
     val order: Int,
+    @PrimaryKey
     @SerializedName("picture")
     val picture: String,
     @SerializedName("solo")
