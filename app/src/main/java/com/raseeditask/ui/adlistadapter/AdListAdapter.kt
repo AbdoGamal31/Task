@@ -16,7 +16,12 @@ import com.squareup.picasso.NetworkPolicy
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.card_item.view.*
 
-
+/**
+ * this class to convert list of Ad to list of view
+ *  @author  Abdo Gamal
+ * @version 1.0
+ * @since   27-5-2019
+ */
 class AdListAdapter : RecyclerView.Adapter<AdListAdapter.DataViewHolder>() {
 
     private val adList: ArrayList<AdModel>?

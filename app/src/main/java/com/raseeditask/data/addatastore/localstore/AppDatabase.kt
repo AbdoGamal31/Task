@@ -6,6 +6,13 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.raseeditask.data.adresponse.AdModel
 
+/**
+ *this class response for create database instance to can access DB and do Db operations
+ *@paramc context:Context
+ * @author  Abdo Gamal
+ * @version 1.0
+ * @since   29-5-2019
+ */
 @Database(entities = [AdModel::class], version = 1, exportSchema = false)
 
 abstract class AppDatabase : RoomDatabase() {
@@ -16,7 +23,7 @@ abstract class AppDatabase : RoomDatabase() {
         @Volatile
         private var instance: AppDatabase? = null
         private val LOCK = Any()
-
+        //here bild DB instance
         operator fun invoke(context: Context) = instance
             ?: synchronized(LOCK) {
                 instance

@@ -6,7 +6,12 @@ import androidx.annotation.RequiresApi
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
-
+/**
+ * this class is database table and response of Api
+ * @author  Abdo Gamal
+ * @version 1.0
+ * @since   27-5-2019
+ */
 @Entity(tableName = "ad_table")
 data class AdModel(
     @SerializedName("action")

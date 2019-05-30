@@ -20,6 +20,13 @@ import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
 
 
+/**
+ * this fragment is response for display list of data into recView
+ * bind UI
+ *  @author  Abdo Gamal
+ * @version 1.0
+ * @since   27-5-2019
+ */
 class AdPage : Fragment(), KodeinAware {
 
     private lateinit var viewModel: AdPageViewModel
@@ -46,7 +53,7 @@ class AdPage : Fragment(), KodeinAware {
                 displayAdListIntoRecView(it)
             }, Consumer { Log.d("data", it.toString()) })
     }
-
+//set data into recView
     private fun displayAdListIntoRecView(it: MutableList<AdModel>) {
         if (it.size == 0) {
             empty_stat.visibility = View.VISIBLE
@@ -68,6 +75,7 @@ class AdPage : Fragment(), KodeinAware {
         (activity as? AppCompatActivity)?.supportActionBar?.subtitle = null
     }
 
+    //dispose subscription
     override fun onStop() {
         super.onStop()
         if (!disposable.isDisposed) disposable.dispose()

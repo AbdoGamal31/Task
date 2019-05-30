@@ -17,14 +17,21 @@ import org.kodein.di.generic.instance
 import org.kodein.di.generic.provider
 import org.kodein.di.generic.singleton
 
+/**
+ * this application class used for create object of viewmodelfactory
+ * it is an kotlin DI like dagger 2 in java
+ * @author  Abdo Gamal
+ * @version 1.0
+ * @since   29-5-2019
+ */
 class AdModule : Application(), KodeinAware {
     override val kodein = Kodein.lazy {
+        //create object of context
         import(androidXModule(this@AdModule))
         bind() from singleton { AppDatabase(instance()) }
         bind() from singleton { instance<AppDatabase>().adDao() }
         bind() from singleton { NetworkFactory() }
         bind() from singleton { RemoteAdDataStore(instance()) }
-
         bind() from singleton { LocalAdDataStore(instance()) }
         bind() from provider { GetLocalAdAscendingOrderUseCase(instance()) }
         bind() from provider { GetRemoteAdAscendingOrderUseCase(instance(), instance()) }
